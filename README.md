@@ -96,6 +96,37 @@ team-task-manager/
 
 ---
 
+# 📸 Screenshots
+
+## Landing Page
+
+<img width="1573" height="728" alt="image" src="https://github.com/user-attachments/assets/f1558344-41db-44c1-9431-49a0d20723ba" />
+
+
+---
+
+## Admin Dashboard
+
+<img width="1597" height="742" alt="image" src="https://github.com/user-attachments/assets/3ace5b72-96a5-46bb-98a9-974f3ed0e224" />
+
+
+---
+
+## Task Management
+
+<img width="1583" height="738" alt="image" src="https://github.com/user-attachments/assets/c5d9280f-6178-4dd0-849b-6773ee3ec3e0" />
+
+
+---
+
+## User Management
+
+<img width="1576" height="728" alt="image" src="https://github.com/user-attachments/assets/c5361318-a982-496e-a3be-56e02449b805" />
+
+
+---
+
+
 # ⚙️ Local Setup Instructions
 
 ## 1️⃣ Clone Repository
