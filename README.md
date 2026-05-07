@@ -1,145 +1,239 @@
 # Team Task Manager
 
-A simple, professional, full-stack application for managing team projects and tasks. Built specifically as a hiring assessment project focusing on clean architecture, responsive UI, and deployment readiness.
+A modern, full-stack Team Task Management application built as part of a Full-Stack Hiring Assessment. The application enables teams to efficiently manage projects, assign tasks, and track progress with secure role-based access control.
 
-## 🚀 Features
+---
 
-- **Authentication**: JWT-based secure signup and login.
-- **Role-Based Access Control**:
-  - **ADMIN**: Create projects, create tasks, assign tasks, full visibility.
-  - **MEMBER**: View assigned tasks, update task status (TODO, IN_PROGRESS, DONE).
-- **Project Management**: Create and view projects.
-- **Task Management**: Create tasks, assign to members, filter by status, and update statuses.
-- **Dashboard**: High-level KPIs and recent activity.
-- **Responsive UI**: Clean, light-themed SaaS style interface built with Tailwind CSS.
+# 🌐 Live Demo
 
-## 🛠️ Tech Stack
+Frontend (Vercel):  
+https://team-task-manager-swart-eight.vercel.app/
 
-**Frontend:**
+Backend API (Railway):  
+https://team-task-manager-production-2ac6.up.railway.app
+
+---
+
+# 🚀 Features
+
+## 🔐 Authentication & Authorization
+- JWT-based secure authentication
+- Role-based access control (RBAC)
+- Protected routes and APIs
+- Admin secret key validation for ADMIN registration
+
+## 👨‍💼 Admin Features
+- Create and manage projects
+- Create tasks and assign members
+- Update and delete tasks
+- View all tasks and users
+- Access dynamic User Management dashboard
+
+## 👨‍💻 Member Features
+- View assigned tasks only
+- Update task status
+- Personalized dashboard metrics
+
+## 📊 Dashboard & UI
+- KPI metrics dashboard
+- Recent task activity
+- Responsive modern SaaS-style UI
+- Clean landing page with authentication modal
+- Mobile responsive sidebar and navigation
+
+---
+
+# 🛠️ Tech Stack
+
+## Frontend
 - React.js (Vite)
 - Tailwind CSS
-- React Router
+- React Router DOM
 - Axios
-- Lucide React (Icons)
-- React Hot Toast (Notifications)
-- *No complex state management libraries, no heavy dependencies.*
+- Lucide React Icons
+- React Hot Toast
 
-**Backend:**
+## Backend
 - Node.js
 - Express.js
-- PostgreSQL
 - Prisma ORM
-- JWT Authentication & bcryptjs
+- JWT Authentication
+- bcryptjs
 
-**Target Deployment Platforms:**
+## Database
+- PostgreSQL (Supabase)
+
+## Deployment
 - Frontend: Vercel
 - Backend: Railway
 - Database: Supabase
 
-## 📁 Folder Structure
+---
 
-```
+# 📁 Project Structure
+
+```bash
 team-task-manager/
-├── client/                 # Vite React Application
+├── client/                 # React Frontend
 │   ├── src/
-│   │   ├── components/     # UI components and layout
-│   │   ├── context/        # Auth Context
-│   │   ├── lib/            # Axios API config & utilities
-│   │   └── pages/          # Dashboard, Login, Projects, etc.
+│   │   ├── components/
+│   │   ├── context/
+│   │   ├── lib/
+│   │   └── pages/
 │   └── ...
-├── server/                 # Express Backend Application
-│   ├── prisma/             # Prisma Schema
+│
+├── server/                 # Express Backend
+│   ├── prisma/
 │   ├── src/
-│   │   ├── controllers/    # Route controllers
-│   │   ├── middleware/     # Auth & Role validation
-│   │   ├── routes/         # Express routes
-│   │   └── index.js        # Server entry point
+│   │   ├── controllers/
+│   │   ├── middleware/
+│   │   ├── routes/
+│   │   └── index.js
 │   └── ...
+│
 └── README.md
 ```
 
-## ⚙️ Local Setup Instructions
+---
 
-### 1. Database (Supabase / PostgreSQL)
-1. Create a PostgreSQL database on Supabase (or locally).
-2. Get the connection string (`DATABASE_URL`).
+# ⚙️ Local Setup Instructions
 
-### 2. Backend Setup
+## 1️⃣ Clone Repository
+
+```bash
+git clone <your-repository-url>
+cd team-task-manager
+```
+
+---
+
+## 2️⃣ Backend Setup
+
 ```bash
 cd server
 npm install
 ```
-Create a `.env` file in the `server` directory:
+
+Create `.env` file inside `server/`:
+
 ```env
 PORT=5000
-DATABASE_URL="your-postgresql-database-url"
-JWT_SECRET="super-secret-jwt-key"
+DATABASE_URL="your-postgresql-url"
+JWT_SECRET="your-secret-key"
+ADMIN_SECRET_KEY="your-admin-secret"
 ```
-Run Prisma migrations and start the server:
+
+Run Prisma setup:
+
 ```bash
 npx prisma generate
 npx prisma db push
+```
+
+Start backend:
+
+```bash
 npm run dev
 ```
 
-### 3. Frontend Setup
+---
+
+## 3️⃣ Frontend Setup
+
 ```bash
 cd client
 npm install
 ```
-Create a `.env` file in the `client` directory:
+
+Create `.env` file inside `client/`:
+
 ```env
 VITE_API_URL="http://localhost:5000/api"
 ```
-Start the frontend development server:
+
+Start frontend:
+
 ```bash
 npm run dev
 ```
 
-## 🌐 API Endpoints
+---
 
-### Auth
-- `POST /api/auth/signup` - Register a new user
-- `POST /api/auth/login` - Login and get JWT
-- `GET /api/auth/me` - Get current user profile (Protected)
+# 🌐 API Endpoints
 
-### Projects
-- `GET /api/projects` - Get all projects (Protected)
-- `GET /api/projects/:id` - Get specific project (Protected)
-- `POST /api/projects` - Create a project (Admin Only)
+## Authentication
 
-### Tasks
-- `GET /api/tasks` - Get tasks (Admin sees all, Member sees assigned)
-- `POST /api/tasks` - Create a task (Admin Only)
-- `PUT /api/tasks/:id/status` - Update task status (Assigned Member or Admin)
-- `PUT /api/tasks/:id/assign` - Assign task to member (Admin Only)
-- `DELETE /api/tasks/:id` - Delete a task (Admin Only)
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/auth/signup` | Register new user |
+| POST | `/api/auth/login` | Login user |
+| GET | `/api/auth/me` | Get current user |
 
-## 🚢 Deployment Instructions
+---
 
-### Database (Supabase)
-Ensure your `DATABASE_URL` is set to the Supabase connection string. Run `npx prisma db push` from your local machine to set up the schema.
+## Projects
 
-### Backend (Railway)
-1. Connect your GitHub repository to Railway.
-2. Select the `server` folder as the root directory (or use a monorepo setup).
-3. Add Environment Variables: `DATABASE_URL` and `JWT_SECRET`.
-4. Railway will automatically detect Node.js and run `npm start` (which maps to `node src/index.js`).
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/projects` | Get all projects |
+| GET | `/api/projects/:id` | Get project details |
+| POST | `/api/projects` | Create project (Admin) |
 
-### Frontend (Vercel)
-1. Import your GitHub repository to Vercel.
-2. Set the Root Directory to `client`.
-3. Vercel automatically detects Vite.
-4. Add Environment Variable: `VITE_API_URL` pointing to your Railway backend URL.
+---
 
-## 🔐 Demo Credentials
+## Tasks
 
-Use these credentials to test the application:
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/tasks` | Get tasks |
+| POST | `/api/tasks` | Create task (Admin) |
+| PUT | `/api/tasks/:id/status` | Update task status |
+| PUT | `/api/tasks/:id/assign` | Assign task |
+| DELETE | `/api/tasks/:id` | Delete task |
 
-**Admin Account**
-- Email: `admin@gmail.com`
-- Password: `admin123`
+---
 
-**Member Account**
-- Email: `member@gmail.com`
-- Password: `member123`
+# 🚢 Deployment
+
+## Backend Deployment (Railway)
+- Connected GitHub repository to Railway
+- Configured `server` as root directory
+- Added environment variables
+- Generated production deployment URL
+
+## Frontend Deployment (Vercel)
+- Connected GitHub repository to Vercel
+- Configured `client` as root directory
+- Added production API environment variable
+
+---
+
+# 🔐 Demo Credentials
+
+## 👨‍💼 Admin Account
+
+```txt
+Email: admin@gmail.com
+Password: admin123
+```
+
+## 👨‍💻 Member Account
+
+```txt
+Email: member@gmail.com
+Password: member123
+```
+
+---
+
+# 📌 Notes
+
+- Built within a 24-hour assessment timeline
+- Focused on clean architecture, responsive UI, and scalable backend structure
+- Uses modern full-stack development practices with production deployment
+
+---
+
+# 👨‍💻 Author
+
+C S Goutham Reddy
