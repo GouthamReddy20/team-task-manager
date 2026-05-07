@@ -12,13 +12,20 @@ const app = express();
 app.use(cors({ origin: '*' }));
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.send('Team Task Manager API is running...');
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/users', userRoutes);
 
 app.get('/api/health', (req, res) => {
-  res.status(200).json({ status: 'ok', message: 'Team Task Manager API is running' });
+  res.status(200).json({
+    status: 'ok',
+    message: 'Team Task Manager API is running'
+  });
 });
 
 const PORT = process.env.PORT || 5000;
